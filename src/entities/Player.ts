@@ -12,6 +12,8 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     scene.physics.add.existing(this);
 
     this.init();
+
+    this.scene.events.on(Phaser.Scenes.Events.UPDATE, this.update, this);
   }
 
   init() {
@@ -20,5 +22,9 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       .setGravityY(5000)
       .setCollideWorldBounds(true)
       .setBodySize(44, 92);
+  }
+
+  update() {
+    console.log("Player update!");
   }
 }
