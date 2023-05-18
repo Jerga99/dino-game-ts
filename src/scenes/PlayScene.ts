@@ -12,7 +12,7 @@ class PlayScene extends GameScene {
 
   spawnInterval: number = 1500;
   spawnTime: number = 0;
-  obstacleSpeed: number = 5;
+  gameSpeed: number = 5;
   
   constructor() {
     super("PlayScene");
@@ -66,13 +66,15 @@ class PlayScene extends GameScene {
       this.spawnTime = 0;
     }
 
-    Phaser.Actions.IncX(this.obstacles.getChildren(), -this.obstacleSpeed);
+    Phaser.Actions.IncX(this.obstacles.getChildren(), -this.gameSpeed);
 
     this.obstacles.getChildren().forEach((obstacle: SpriteWithDynamicBody) => {
       if (obstacle.getBounds().right < 0) {
         this.obstacles.remove(obstacle);
       }
     });
+
+    this.ground.tilePositionX += this.gameSpeed;
   }
 
   createPlayer() {
