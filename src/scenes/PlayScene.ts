@@ -7,6 +7,9 @@ class PlayScene extends GameScene {
   player: Player;
   ground: Phaser.GameObjects.TileSprite;
   startTrigger: SpriteWithDynamicBody;
+
+  spawnInterval: number = 1500;
+  spawnTime: number = 0;
   
   constructor() {
     super("PlayScene");
@@ -59,6 +62,12 @@ class PlayScene extends GameScene {
   }
 
   update(time: number, delta: number): void {
+    this.spawnTime += delta;
+
+    if (this.spawnTime >= this.spawnInterval) {
+      console.log("Spawning obstacle!");
+      this.spawnTime = 0;
+    }
   }
 }
 
