@@ -29,8 +29,13 @@ class PlayScene extends GameScene {
       .setOrigin(0, 1);
 
     this.physics.add.collider(this.obstacles, this.player, () => {
-      this.physics.pause();
       this.isGameRunning = false;
+      this.physics.pause();
+
+      this.player.die();
+
+      this.spawnTime = 0;
+      this.gameSpeed = 5;
     });
 
     this.physics.add.overlap(this.startTrigger, this.player, () => {
