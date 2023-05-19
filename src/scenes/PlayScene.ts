@@ -12,6 +12,7 @@ class PlayScene extends GameScene {
 
   gameOverText: Phaser.GameObjects.Image;
   restartText: Phaser.GameObjects.Image;
+  gameOverContainer: Phaser.GameObjects.Container;
 
   spawnInterval: number = 1500;
   spawnTime: number = 0;
@@ -30,9 +31,10 @@ class PlayScene extends GameScene {
     this.gameOverText = this.add.image(0, 0, "game-over");
     this.restartText = this.add.image(0, 80, "restart");
 
-    this.add
+    this.gameOverContainer = this.add
       .container(this.gameWidth / 2, (this.gameHeight / 2) - 50)
-      .add([this.gameOverText, this.restartText]);
+      .add([this.gameOverText, this.restartText])
+      .setAlpha(0);
 
     this.startTrigger = this.physics.add.sprite(0, 10, null)
       .setAlpha(0)
@@ -43,6 +45,7 @@ class PlayScene extends GameScene {
       this.physics.pause();
 
       this.player.die();
+      this.gameOverContainer.setAlpha(1);
 
       this.spawnTime = 0;
       this.gameSpeed = 5;
