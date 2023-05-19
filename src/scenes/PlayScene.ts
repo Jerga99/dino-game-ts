@@ -29,7 +29,7 @@ class PlayScene extends GameScene {
     this.obstacles = this.physics.add.group();
 
     this.gameOverText = this.add.image(0, 0, "game-over");
-    this.restartText = this.add.image(0, 80, "restart");
+    this.restartText = this.add.image(0, 80, "restart").setInteractive();
 
     this.gameOverContainer = this.add
       .container(this.gameWidth / 2, (this.gameHeight / 2) - 50)
@@ -39,6 +39,10 @@ class PlayScene extends GameScene {
     this.startTrigger = this.physics.add.sprite(0, 10, null)
       .setAlpha(0)
       .setOrigin(0, 1);
+
+    this.restartText.on("pointerdown", () => {
+      console.log("Clicking restart!");
+    });
 
     this.physics.add.collider(this.obstacles, this.player, () => {
       this.isGameRunning = false;
