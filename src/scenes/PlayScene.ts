@@ -11,6 +11,7 @@ class PlayScene extends GameScene {
   clouds: Phaser.GameObjects.Group;
   startTrigger: SpriteWithDynamicBody;
 
+  scoreText: Phaser.GameObjects.Text;
   gameOverText: Phaser.GameObjects.Image;
   restartText: Phaser.GameObjects.Image;
   gameOverContainer: Phaser.GameObjects.Container;
@@ -29,6 +30,7 @@ class PlayScene extends GameScene {
     this.createObstacles();
     this.createGameoverContainer();
     this.createAnimations();
+    this.createScore();
 
     this.handleGameStart();
     this.handleObstacleCollisions();
@@ -105,6 +107,15 @@ class PlayScene extends GameScene {
     });
   }
 
+  createScore() {
+    this.scoreText = this.add.text(this.gameWidth, 0, "00000", {
+      fontSize: 30,
+      fontFamily: "Arial",
+      color: "#535353",
+      resolution: 5
+    }).setOrigin(1, 0).setAlpha(0);
+  }
+
   spawnObstacle() {
     const obsticlesCount = PRELOAD_CONFIG.cactusesCount + PRELOAD_CONFIG.birdsCount;
     const obstacleNum = Math.floor(Math.random() * obsticlesCount) + 1;
@@ -155,6 +166,7 @@ class PlayScene extends GameScene {
             this.ground.width = this.gameWidth;
             this.player.setVelocityX(0);
             this.clouds.setAlpha(1);
+            this.scoreText.setAlpha(1);
             this.isGameRunning = true;
           }
         }
