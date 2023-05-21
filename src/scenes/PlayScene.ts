@@ -11,6 +11,7 @@ class PlayScene extends GameScene {
   clouds: Phaser.GameObjects.Group;
   startTrigger: SpriteWithDynamicBody;
 
+  highScoreText: Phaser.GameObjects.Text;
   scoreText: Phaser.GameObjects.Text;
   gameOverText: Phaser.GameObjects.Image;
   restartText: Phaser.GameObjects.Image;
@@ -132,6 +133,13 @@ class PlayScene extends GameScene {
 
   createScore() {
     this.scoreText = this.add.text(this.gameWidth, 0, "00000", {
+      fontSize: 30,
+      fontFamily: "Arial",
+      color: "#535353",
+      resolution: 5
+    }).setOrigin(1, 0).setAlpha(0);
+
+    this.highScoreText = this.add.text(this.scoreText.getBounds().left - 20, 0, "00000", {
       fontSize: 30,
       fontFamily: "Arial",
       color: "#535353",
