@@ -93,7 +93,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
   registerSounds() {
     this.jumpSound = this.scene.sound.add("jump", {volume: 0.2}) as Phaser.Sound.HTML5AudioSound;
-    this.hitSound = this.scene.sound.add("hit", {volume: 1}) as Phaser.Sound.HTML5AudioSound;
+    this.hitSound = this.scene.sound.add("hit", {volume: 0.2}) as Phaser.Sound.HTML5AudioSound;
   }
 
   die() {
